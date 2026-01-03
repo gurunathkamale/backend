@@ -1,23 +1,4 @@
-// import * as service from "./auth.services";
-// import { AuthRequest } from "../types/auth";
 
-// export const register = async (req: any, res: any, next: any) => {
-//   try {
-//     const user = await service.register(req.body);
-//     res.status(201).json({ id: user._id });
-//   } catch (e) {
-//     next(e);
-//   }
-// };
-
-// export const login = async (req: any, res: any, next: any) => {
-//   try {
-//     const token = await service.login(req.body.email, req.body.password);
-//     res.json({ token });
-//   } catch (e) {
-//     next(e);
-//   }
-// };
 
 import { Response, NextFunction } from "express";
 import * as service from "./auth.services";
@@ -50,12 +31,11 @@ export const login = async (
       });
     }
 
-    // service returns { token, user }
     const { token, user } = await service.login(email, password);
 console.log("JWT TOKEN:", token); 
-    // ✅ SEND TOKEN DIRECTLY
+  
     return res.status(200).json({
-      token,   // 👈 JWT STRING
+      token,   
       user,
     });
   } catch (error) {
