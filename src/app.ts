@@ -4,11 +4,13 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import routes from "./routes"
 import errorMiddleware from "./middleware/error.middleware"
+import { APP_URL } from "./config/env"
 
 
 const app = express()
 app.use(express.json())
-app.use(cors({origin:true, credentials: true}))
+app.use(cors({origin: APP_URL,
+   credentials: true}))
 app.use(helmet())
 app.use(cookieParser())
 app.use("/api", routes);
